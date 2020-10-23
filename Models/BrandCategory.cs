@@ -12,7 +12,7 @@ namespace SneakerBoxStore.Models
         [Required]
         public String BrandName { get; set; }
 
-        //public List<Sneaker> Sneakers { get; set; }
+        public List<Sneaker> Sneakers { get; set; }
 
     }
 }
