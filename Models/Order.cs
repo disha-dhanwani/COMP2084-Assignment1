@@ -10,11 +10,10 @@ namespace SneakerBoxStore.Models
         public int OrderId { get; set; }
         public int CustomerId { get; set; }
         public int OrderDetailId { get; set; }
-        public double Total { get; set; }
-        
+        public Double Total { get; set; }
+
         //Child References
         public Customer Customer { get; set; }
         public OrderDetail OrderDetail { get; set; }
-
     }
 }

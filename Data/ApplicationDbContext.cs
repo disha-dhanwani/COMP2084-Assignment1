@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SneakerBoxStore.Models;
 
@@ -15,6 +12,7 @@ namespace SneakerBoxStore.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        //public DbSet<Order> Orders { get; set; }
 
         //
         protected override void OnModelCreating(ModelBuilder builder)
@@ -57,19 +55,26 @@ namespace SneakerBoxStore.Data
                 .HasForeignKey(s => s.CustomerId)
                 .HasConstraintName("FKey_ShoppingCarts_CustomerId");
 
-            //6.
-            builder.Entity<Order>()
-                .HasOne(s => s.Customer)
-                .WithMany(c => c.Orders)
-                .HasForeignKey(s => s.CustomerId)
-                .HasConstraintName("FKey_Orders_CustomerId");
+            ////6.
+            //builder.Entity<Order>()
+            //     .HasOne(s => s.Customer)
+            //     .WithMany(c => c.Orders)
+            //     .HasForeignKey(s => s.CustomerId)
+            //     .HasConstraintName("FKey_Orders_CustomerId");
 
             //7.
-            builder.Entity<Order>()
-                .HasOne(s => s.OrderDetail)
-                .WithMany(c => c.Orders)
-                .HasForeignKey(s => s.OrderDetailId)
-                .HasConstraintName("FKey_Orders_OrderDetailId");
+            //builder.Entity<Order>()
+            //     .HasOne(s => s.OrderDetail)
+            //     .WithMany(c => c.Orders)
+            //     .HasForeignKey(s => s.OrderDetailId)
+            //     .HasConstraintName("FKey_Orders_OrderDetailId")
+            //builder.Entity<Order>()
+            //     .HasOne(i => i.OrderDetail)
+            //     .WithOne(c => c.Orders)
+            //     .HasForeignKey(i => i.OrderDetailId)
+            //     .WillCascadeOnDelete(false);
+
+       
 
 
 

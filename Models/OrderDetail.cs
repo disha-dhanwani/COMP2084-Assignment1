@@ -20,6 +20,6 @@ namespace SneakerBoxStore.Models
         public Sneaker Sneaker { get; set; }
         public Customer Customer { get; set; }
 
-        public List<Order> Orders { get; set; }
+        //public List<Order> Orders { get; set; }
     }
 }

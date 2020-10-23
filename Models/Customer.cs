@@ -30,6 +30,7 @@ namespace SneakerBoxStore.Models
 
         public List<OrderDetail> OrderDetails { get; set; }
         public List<ShoppingCart> ShoppingCarts { get; set; }
-        public List<Order> Orders { get; set; }
+        //public List<Order> Orders { get; set; }
+
     }
 }
