@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SneakerBoxStore.Models.Sneaker>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Shop - ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,18 +16,22 @@
     <div class="grid-container">
         
         <div class="grid-item">
+            
             <a asp-action="Details" asp-route-id="@item.SneakerId">
                 @if (item.Image != null)
                 {
                     <img src="~/img/sneaker_upload/@item.Image" class="img-thumbnail" alt="Sneaker Image" />
                 }
                 <br />
+                @Html.DisplayFor(modelItem => item.BrandCategory.BrandName) 
                 @Html.DisplayFor(modelItem => item.ModelName)
                 - @Html.DisplayFor(modelItem => item.Price)
-
-                <a asp-action="Edit" asp-route-id="@item.SneakerId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SneakerId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SneakerId">Delete</a>
+                <br />
+                <small>
+                    <a asp-action="Edit" asp-route-id="@item.SneakerId">Edit</a> |
+                    @*<a asp-action="Details" asp-route-id="@item.SneakerId">Details</a> |*@
+                    <a asp-action="Delete" asp-route-id="@item.SneakerId">Delete</a>
+                </small>
             </a>
         </div>
     </div>
