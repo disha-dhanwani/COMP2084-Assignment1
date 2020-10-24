@@ -10,7 +10,7 @@
 <div>
     <h4>Sneaker</h4>
     <hr />
-    <dl class="row">
+    <dl class="row font-weight-bold">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ModelName)
         </dt>
@@ -45,7 +45,7 @@
             @Html.DisplayNameFor(model => model.Image)
         </dt>
         <dd class="col-sm-10">
-            <img src="@("~/img/sneaker_upload/"+Model.Image)" asp-append-version="true" width="250px" height="250px" />
+            <img src="@("~/img/sneaker_upload/"+Model.Image)" asp-append-version="true" width="300px" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.InStock)
