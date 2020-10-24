@@ -21,7 +21,7 @@ namespace SneakerBoxStore.Models
         [DisplayFormat(DataFormatString = "{0:c}")]
         [Range(0.01, 9999999)]
         public Double Price { get; set; }
-        [Required]
+        
         public String Image { get; set; }
         [Required]
         public Boolean InStock { get; set; }

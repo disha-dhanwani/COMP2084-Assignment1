@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SneakerBoxStore.Data;
 using SneakerBoxStore.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace SneakerBoxStore.Controllers
 {
@@ -57,10 +59,32 @@ namespace SneakerBoxStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SneakerId,BrandCategoryId,ModelName,ReleaseYear,Description,Material,Price,Image,InStock")] Sneaker sneaker)
+        public async Task<IActionResult> Create([Bind("SneakerId,BrandCategoryId,ModelName,ReleaseYear,Description,Material,Price,InStock")] Sneaker sneaker, IFormFile Image)
         {
             if (ModelState.IsValid)
             {
+                //Check for a photo and upload
+                if (Image.Length > 0)
+                {
+                    //get a temp location of the upload file
+                    var tempFile = Path.GetTempFileName();
+
+                    //create a unique name using a global unique ID (GUID)
+                    var fileName = Guid.NewGuid() + "-" + Image.FileName;
+
+                    //set the destination - dynamic - PATH and file name - one slah is not recognised as a path.
+                    var uploadPath = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\img\\sneaker_upload\\" + fileName;
+
+                    //using a STREAM to create a new file
+                    using var stream = new FileStream(uploadPath, FileMode.Create);
+                    await Image.CopyToAsync(stream);
+
+                    //Add unique file name as the photo property of the new Product object
+                    sneaker.Image = fileName;
+
+                }
+
+
                 _context.Add(sneaker);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -91,7 +115,7 @@ namespace SneakerBoxStore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SneakerId,BrandCategoryId,ModelName,ReleaseYear,Description,Material,Price,Image,InStock")] Sneaker sneaker)
+        public async Task<IActionResult> Edit(int id, [Bind("SneakerId,BrandCategoryId,ModelName,ReleaseYear,Description,Material,Price,InStock")] Sneaker sneaker, IFormFile Image)
         {
             if (id != sneaker.SneakerId)
             {
@@ -102,6 +126,27 @@ namespace SneakerBoxStore.Controllers
             {
                 try
                 {
+                    //Check for a photo and upload
+                    if (Image.Length > 0)
+                    {
+                        //get a temp location of the upload file
+                        var tempFile = Path.GetTempFileName();
+
+                        //create a unique name using a global unique ID (GUID)
+                        var fileName = Guid.NewGuid() + "-" + Image.FileName;
+
+                        //set the destination - dynamic - PATH and file name - one slah is not recognised as a path.
+                        var uploadPath = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\img\\sneaker_upload\\" + fileName;
+
+                        //using a STREAM to create a new file
+                        using var stream = new FileStream(uploadPath, FileMode.Create);
+                        await Image.CopyToAsync(stream);
+
+                        //Add unique file name as the photo property of the new Product object
+                        sneaker.Image = fileName;
+
+                    }
+
                     _context.Update(sneaker);
                     await _context.SaveChangesAsync();
                 }
