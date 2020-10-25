@@ -11,8 +11,11 @@ namespace SneakerBoxStore.Models
         public int SneakerId { get; set; } //Primary Key
         public int BrandCategoryId { get; set; }  //Foreign Key
 
+        [Display(Name = "Model")]
         [Required]
         public String ModelName { get; set; }
+
+        [Display(Name = "Release Year")]
         [Required]
         public int ReleaseYear { get; set; }
         [Required]
@@ -23,10 +26,13 @@ namespace SneakerBoxStore.Models
         public Double Price { get; set; }
         
         public String Image { get; set; }
+
+        [Display(Name = "In stock")]
         [Required]
         public Boolean InStock { get; set; }
 
         //Child Reference
+        [Display(Name = "Brand")]
         public BrandCategory BrandCategory { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }

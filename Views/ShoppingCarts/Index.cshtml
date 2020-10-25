@@ -1,0 +1,66 @@
+﻿@model IEnumerable<SneakerBoxStore.Models.ShoppingCart>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.DateAdded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateModified)
+            </th>*@
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Sneaker)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.DateAdded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModified)
+            </td>*@
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Sneaker.BrandCategory.BrandName)
+                @Html.DisplayFor(modelItem => item.Sneaker.ModelName)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                @Html.DisplayFor(modelItem => item.Customer.LastName)
+
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ShoppingCartId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ShoppingCartId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ShoppingCartId">Remove Item</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

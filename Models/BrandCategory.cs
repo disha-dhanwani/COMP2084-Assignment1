@@ -9,6 +9,8 @@ namespace SneakerBoxStore.Models
     public class BrandCategory
     {
         public int BrandCategoryId { get; set; }  //Primary Key
+
+        [Display(Name = "Brand")]
         [Required]
         public String BrandName { get; set; }
 
