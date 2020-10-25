@@ -1,4 +1,11 @@
-﻿using System;
+﻿/***
+ * ASSIGNMENT 1B - COMP2084 [ASP.NET]
+ * STUDENT NAME: DISHA DHANWANI
+ * STUDENT NUMBER: 200434069
+ * 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,6 +15,10 @@ namespace SneakerBoxStore.Models
 {
     public class BrandCategory
     {
+        /***
+         *Creating the Model Table - BrandCategories
+         *--This table includes the details of brand categories and the ID
+         */
         public int BrandCategoryId { get; set; }  //Primary Key
 
         [Display(Name = "Brand")]

@@ -1,4 +1,10 @@
-﻿using System;
+﻿/***
+ * CONTROLLERS
+ * STUDENT NAME: DISHA DHANWANI
+ * STUDENT NUMBER: 200434069
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +15,10 @@ using SneakerBoxStore.Data;
 using SneakerBoxStore.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+
+/***
+ *Creating the Controller for Sneakers
+ */
 
 namespace SneakerBoxStore.Controllers
 {
@@ -63,6 +73,7 @@ namespace SneakerBoxStore.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Validation for adding photos to the create form.
                 //Check for a photo and upload
                 if (Image.Length > 0)
                 {

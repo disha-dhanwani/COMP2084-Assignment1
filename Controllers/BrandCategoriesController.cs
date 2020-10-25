@@ -8,6 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using SneakerBoxStore.Data;
 using SneakerBoxStore.Models;
 
+/***
+ *Creating the Controller for BrandCategories
+ */
+
 namespace SneakerBoxStore.Controllers
 {
     public class BrandCategoriesController : Controller

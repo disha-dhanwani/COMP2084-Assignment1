@@ -8,6 +8,11 @@ namespace SneakerBoxStore.Models
 {
     public class Sneaker
     {
+        /***
+         *Creating the Model Table - Sneaker
+         *--This table includes the details of sneakers such as sneaker
+         *brand, model, description, price and image.
+         */
         public int SneakerId { get; set; } //Primary Key
         public int BrandCategoryId { get; set; }  //Foreign Key
 

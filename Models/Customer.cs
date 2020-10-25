@@ -8,6 +8,11 @@ namespace SneakerBoxStore.Models
 {
     public class Customer
     {
+        /***
+         *Creating the Model Table - Customer
+         *--This table has the details of customer including first and last names,
+         * address, city, and contact.
+         */
         public int CustomerId { get; set; } //Primary Key
         [Required]
         public String FirstName { get; set; }

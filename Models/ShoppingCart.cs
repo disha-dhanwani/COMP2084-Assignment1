@@ -8,6 +8,10 @@ namespace SneakerBoxStore.Models
 {
     public class ShoppingCart
     {
+        /***
+         *Creating the Model Table - ShoppingCart
+         *--This table includes the details of items in Shopping cart.
+         */
         public int ShoppingCartId { get; set; }  //Primary Key
         public int SneakerId { get; set; }  //Foreign Key
         public int CustomerId { get; set; }

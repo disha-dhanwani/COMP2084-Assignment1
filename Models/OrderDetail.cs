@@ -7,6 +7,11 @@ namespace SneakerBoxStore.Models
 {
     public class OrderDetail
     {
+        /***
+         *Creating the Model Table - OrderDetail
+         *--This table has the details of order including the sneaker size,
+         *quantity, total amount and the dates.
+         */
         public int OrderDetailId { get; set; } //Primary Key
         public int CustomerId { get; set; } //Foreign Key
         public int SneakerId { get; set; } //Foreign Key

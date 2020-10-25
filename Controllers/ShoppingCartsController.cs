@@ -8,6 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using SneakerBoxStore.Data;
 using SneakerBoxStore.Models;
 
+/***
+ *Creating the Controller for Shopping cart
+ */
+
 namespace SneakerBoxStore.Controllers
 {
     public class ShoppingCartsController : Controller
