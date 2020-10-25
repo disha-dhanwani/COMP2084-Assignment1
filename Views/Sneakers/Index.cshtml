@@ -8,7 +8,9 @@
 <h1>Shop</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Add a Sneaker</a> |
+    <a asp-area="" asp-controller="BrandCategories" asp-action="Index">Add a Brand</a>
+
 </p>
 
 @foreach (var item in Model)
@@ -27,11 +29,11 @@
                 @Html.DisplayFor(modelItem => item.ModelName)
                 - @Html.DisplayFor(modelItem => item.Price)
                 <br />
-                <small>
-                    <a asp-action="Edit" asp-route-id="@item.SneakerId">Edit</a> |
+                <!--<small>
+                    <a asp-action="Edit" asp-route-id="@item.SneakerId">Edit</a> |-->
                     @*<a asp-action="Details" asp-route-id="@item.SneakerId">Details</a> |*@
-                    <a asp-action="Delete" asp-route-id="@item.SneakerId">Delete</a>
-                </small>
+                    <!--<a asp-action="Delete" asp-route-id="@item.SneakerId">Delete</a>
+                </small>-->
             </a>
         </div>
     </div>
