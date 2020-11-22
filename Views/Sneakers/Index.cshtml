@@ -17,34 +17,32 @@
     Displaying the products in a grid view.
 *@
 
-@foreach (var item in Model)
-{
-    <div class="grid-container">
-        
-        <div class="grid-item">
-            
-            <a asp-action="Details" asp-route-id="@item.SneakerId">
-                @if (item.Image != null)
-                {
-                    <img src="~/img/sneaker_upload/@item.Image" class="img-thumbnail" alt="Sneaker Image" />
-                }
-                <br />
-                @Html.DisplayFor(modelItem => item.BrandCategory.BrandName) 
-                @Html.DisplayFor(modelItem => item.ModelName)
-                - @Html.DisplayFor(modelItem => item.Price)
-                <br />
-                <!--<small>
-                    <a asp-action="Edit" asp-route-id="@item.SneakerId">Edit</a> |-->
-                    @*<a asp-action="Details" asp-route-id="@item.SneakerId">Details</a> |*@
-                    <!--<a asp-action="Delete" asp-route-id="@item.SneakerId">Delete</a>
-                </small>-->
-            </a>
-        </div>
+<section>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-lg-4 mb-3">
+                <div class="card mb-3 text-center h-100">
+                    <div class="card-body">
+                        <a asp-action="Details" asp-route-id="@item.SneakerId">
+                            @if (item.Image != null)
+                            {
+                                <img src="~/img/sneaker_upload/@item.Image" class="img-thumbnail" alt="Sneaker Image" />
+                            }
+                            <br />
+                            <span class="font-weight-bold">
+                                @Html.DisplayFor(modelItem => item.BrandCategory.BrandName)
+                                @Html.DisplayFor(modelItem => item.ModelName)
+                            </span>
+                            - <span class="font-italic"> @Html.DisplayFor(modelItem => item.Price) </span>
+                            <br />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
-
-}
-
-
+</section>
 
 @*<table class="table table-striped table-hover">
     <thead>
