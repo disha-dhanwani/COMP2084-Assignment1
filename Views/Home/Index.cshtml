@@ -3,26 +3,36 @@
 }
 <style>
     main {
-        font-size: 1.5rem;
+          font-size: 1.2rem;
+    }
+    a, .page-link{
+        font-weight: bolder;
+        text-shadow: initial;
     }
 </style>
-<main>
-    <div class="text-center">
+<main class="text-center">
+    <div>
         <h1 class="display-4">Welcome to SneakerBox!</h1>
         <br />
     </div>
 
-    <div class="text-center">
+    <div>
         <p>
             At SneakerBox, we offer the latest sneakers at the best price delivered at your doorstep!
             <br />
             From sportswear to high-end, from Nike to Alexander McQueen, grab your favorite
             pair before it solds out!
+            <br />
+            <p class="small">
+                <a class="page-link border-primary" asp-area="" asp-controller="Sneakers" asp-action="Index">
+                    SHOP NOW!
+                </a>
+            </p>
         </p>
     </div>
     <br />
-    <div class="text-center bg-transparent">
-        <img src="~/img/shoes.jpg" class="img-fluid" width="400px" />
+    <div class="bg-transparent">
+        <img src="~/img/shoes.jpg" class="img-fluid" width="45%" />
         <br />
 
     </div>

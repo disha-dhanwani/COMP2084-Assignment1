@@ -1,10 +1,9 @@
 ﻿@model SneakerBoxStore.Models.Sneaker
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Details - ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h1>Details</h1>
 
 <div>
@@ -12,7 +11,9 @@
         @Html.DisplayFor(model => model.BrandCategory.BrandName)
     @Html.DisplayFor(model => model.ModelName)
 </h4>
+    </div>
 <hr />
+<div>
 <dl class="row font-weight-bold">
     <dt class="col-sm-2">
         @Html.DisplayNameFor(model => model.ModelName)
@@ -64,7 +65,10 @@
     </dd>
 </dl>
 </div>
-<div>
+
+@if (User.IsInRole("Administrator"))
+{
+    <div>
     <a asp-action="Edit" asp-route-id="@Model.SneakerId">
         <input type="submit" value="Edit" class="btn btn-outline-primary" />
     </a>
@@ -72,13 +76,16 @@
         <input type="submit" value="Delete" class="btn btn-outline-primary" />
     </a>
     <br /><br />
-    <a asp-action="Index">Back to List</a>
+    </div>
+}
+<div>
+    <a asp-action="Index">
+        <input type="submit" value="Back to List" class="btn btn-outline-info" />
+    </a> &nbsp;
+    @*--<a class="btn btn-outline-info" asp-action="Index">Back to List</a>*@
+    <a asp-action="Create" asp-controller="ShoppingCarts">
+        <input type="hidden" asp-for="ShoppingCarts" />
+        <input type="submit" value="Add to Cart!" class="btn btn-outline-primary " />
+    </a>
 </div>
 <br />
-
-<div>
-        <a asp-action="Create" asp-controller="ShoppingCarts" >
-            <input type="hidden" asp-for="ShoppingCarts" />
-            <input type="submit" value="Add to Cart!" class="btn btn-outline-primary " />
-        </a>
-    </div>

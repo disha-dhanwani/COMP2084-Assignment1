@@ -15,13 +15,15 @@ using SneakerBoxStore.Data;
 using SneakerBoxStore.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
-/***
- *Creating the Controller for Sneakers
+/***Controller for Sneakers
  */
 
 namespace SneakerBoxStore.Controllers
 {
+    //Sneaker Controller is authorized; only users with a login credential can view/modify the brands.
+    [Authorize(Roles = "Administrator")]
     public class SneakersController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -32,6 +34,8 @@ namespace SneakerBoxStore.Controllers
         }
 
         // GET: Sneakers
+        //Allow any user on the site to view the list of sneakers.
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Sneakers.Include(s => s.BrandCategory);
@@ -39,6 +43,8 @@ namespace SneakerBoxStore.Controllers
         }
 
         // GET: Sneakers/Details/5
+        //Allow any user on the site to view the details of a specific sneaker.
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

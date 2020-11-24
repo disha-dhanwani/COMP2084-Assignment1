@@ -6,10 +6,13 @@
 }
 
 <h1>Brand Categories</h1>
+@if(User.IsInRole("Administrator"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -26,9 +29,12 @@
                 @Html.DisplayFor(modelItem => item.BrandName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.BrandCategoryId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BrandCategoryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BrandCategoryId">Delete</a>
+                @if (User.IsInRole("Administrator"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.BrandCategoryId">Edit</a> <br />
+                    <a asp-action="Delete" asp-route-id="@item.BrandCategoryId">Delete</a> <br />
+                }
+                <a asp-action="Details" asp-route-id="@item.BrandCategoryId">Details</a>
             </td>
         </tr>
 }

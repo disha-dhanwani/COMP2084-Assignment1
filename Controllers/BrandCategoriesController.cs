@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,11 +10,13 @@ using SneakerBoxStore.Data;
 using SneakerBoxStore.Models;
 
 /***
- *Creating the Controller for BrandCategories
+ *This is the Controller for BrandCategories
  */
 
 namespace SneakerBoxStore.Controllers
 {
+    //Brand Categories Controller is authorized; only users with a login credential can view/modify the brands.
+    [Authorize(Roles = "Administrator")]
     public class BrandCategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,12 +27,16 @@ namespace SneakerBoxStore.Controllers
         }
 
         // GET: BrandCategories
+        //Allow any user on the site to view the list of brands.
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.BrandCategories.ToListAsync());
         }
 
         // GET: BrandCategories/Details/5
+        //Allow any user on the site to view the details of a specific brand.
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
