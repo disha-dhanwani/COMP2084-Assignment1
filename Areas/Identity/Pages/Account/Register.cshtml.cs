@@ -79,7 +79,7 @@ namespace SneakerBoxStore.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     //All new users will be added to the customer role in the database.
-                    //var roleResult = await _userManager.AddToRoleAsync(user, "Customer");
+                    var roleResult = await _userManager.AddToRoleAsync(user, "Customer");
                         
                     _logger.LogInformation("User created a new account with password.");
 

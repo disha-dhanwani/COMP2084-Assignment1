@@ -4,48 +4,53 @@
     ViewData["Title"] = "Shop - ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<main>
 
-<div class="align-content-center">
-    <h1>Shop</h1>
-    <a asp-area="" asp-controller="BrandCategories" asp-action="Index">View All Brands</a>
+    <div class="align-content-center" name="top">
+        <h1>Shop</h1>
+        <a asp-area="" asp-controller="BrandCategories" asp-action="Index">View All Brands</a>
+        <br />
+    </div>
+
+
+    @if (User.IsInRole("Administrator"))
+    {
+        <p>
+            <a asp-action="Create">Add a Sneaker</a> |
+            <a asp-area="" asp-controller="BrandCategories" asp-action="Index">Add a Brand</a>
+
+        </p>
+    }
+
+
     <br />
-</div>
-
-
-@if (User.IsInRole("Administrator"))
-{
-    <p>
-        <a asp-action="Create">Add a Sneaker</a> |
-        <a asp-area="" asp-controller="BrandCategories" asp-action="Index">Add a Brand</a>
-
-    </p>
-}
-
-
-<br />
-<section class="align-content-center">
-    <div class="row">
-        @foreach (var item in Model)
-        {
-            <div class="col-sm-6 col-lg-4 mb-3">
-                <div class="card mb-3 text-center h-100">
-                    <div class="card-body">
-                        <a asp-action="Details" asp-route-id="@item.SneakerId">
-                            @if (item.Image != null)
-                            {
-                                <img src="~/img/sneaker_upload/@item.Image" class="img-thumbnail" alt="Sneaker Image" />
-                            }
-                            <br />
-                            <span class="font-weight-bold">
-                                @Html.DisplayFor(modelItem => item.BrandCategory.BrandName)
-                                @Html.DisplayFor(modelItem => item.ModelName)
-                            </span>
-                            - <span class="font-italic"> @Html.DisplayFor(modelItem => item.Price) </span>
-                            <br />
-                        </a>
+    <section class="align-content-center">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-6 col-lg-4 mb-3">
+                    <div class="card mb-3 text-center h-100">
+                        <div class="card-body">
+                            <a asp-action="Details" asp-route-id="@item.SneakerId">
+                                @if (item.Image != null)
+                                {
+                                    <img src="~/img/sneaker_upload/@item.Image" class="img-thumbnail" alt="Sneaker Image" />
+                                }
+                                <br />
+                                <span class="font-weight-bold">
+                                    @Html.DisplayFor(modelItem => item.BrandCategory.BrandName)
+                                    @Html.DisplayFor(modelItem => item.ModelName)
+                                </span>
+                                <br /> <span class="font-italic"> @Html.DisplayFor(modelItem => item.Price) </span>
+                                <br />
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
-</section>
+            }
+        </div>
+        <div>
+            <a class="btn-link" href="#top">Back to top!</a>
+        </div>
+    </section>
+</main>
