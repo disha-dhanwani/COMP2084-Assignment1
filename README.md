@@ -2,7 +2,7 @@
 
 ## Title: SNEARKERBOX E-commerce Website
 
-#This assignment is a part of my ASP.NET course at Georgian College. There are 4 components to this assignment. 
+This assignment is a part of my ASP.NET course at Georgian College. There are 4 components to this assignment. 
 1. CRUD functionalities
 2. Authentication and Authorization
 
