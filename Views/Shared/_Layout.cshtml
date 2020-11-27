@@ -37,9 +37,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" title="Shop" asp-area="" asp-controller="Sneakers" asp-action="Index">Shop</a>
                         </li>
-                        @*<li class="nav-item">
-            <a class="nav-link text-light" asp-area="" asp-controller="BrandCategories" asp-action="Index">Brands</a>
-        </li>*@
                         @if (User.IsInRole("Customer"))
                         {
                             <li class="nav-item">
