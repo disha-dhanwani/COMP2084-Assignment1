@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,8 @@ using SneakerBoxStore.Models;
 
 namespace SneakerBoxStore.Controllers
 {
+    //Sneaker Controller is authorized; only users with a login credential can view/modify the brands.
+    [Authorize(Roles = "Customer")]
     public class ShoppingCartsController : Controller
     {
         private readonly ApplicationDbContext _context;
