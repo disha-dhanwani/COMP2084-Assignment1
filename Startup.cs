@@ -40,6 +40,10 @@ namespace SneakerBoxStore
                     option.ClientId = Configuration.GetSection("Authentication:Google")["ClientId"];
                     option.ClientSecret = Configuration.GetSection("Authentication:Google")["ClientSecret"];
                 });
+
+            //enable sessions
+            services.AddSession();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -65,6 +69,9 @@ namespace SneakerBoxStore
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            //enable sessions
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

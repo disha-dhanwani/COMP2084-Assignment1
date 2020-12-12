@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SneakerBoxStore.Data;
 using SneakerBoxStore.Models;
@@ -33,21 +34,41 @@ namespace SneakerBoxStore.Controllers
         }
 
         //POST: /Shop/AddToCart
-        //public IActionResult AddToCart(int SneakerId, int Quantity, string Size)
-        //{
-        //    var price = _context.Sneakers.Find(SneakerId).Price;
+        [HttpPost]
+        public IActionResult AddToCart(int SneakerId, int Quantity, int Size)
+        {
+            var price = _context.Sneakers.Find(SneakerId).Price;
+            
+            int customerId = 2;
 
-        //    var customerId = "test customer id";
+            var cart = new ShoppingCart
+            {
+                SneakerId = SneakerId,
+                Quantity = Quantity,
+                CustomerId = customerId,
+                DateAdded = DateTime.Now.ToString(),
+                Price = price,
+                SneakerSize = Size
+            };
 
-        //    var cart = new ShoppingCart
-        //    {
-        //        SneakerId = SneakerId,
-        //        Quantity = Quantity,
-        //        CustomerId = customerId,
-        //        DateAdded = DateTime.Now
-        //    }
+            //save to the carts table in db
+            _context.ShoppingCarts.Add(cart);
+            _context.SaveChanges();
 
-        //}
+            return RedirectToAction("Cart");
+
+        }
+
+        private int GetCustomerId()
+        {
+            if(HttpContext.Session.GetInt32("CustomerId") == null)
+            {
+                HttpContext.Session.SetInt32("CustomerId", int.Parse(Guid.NewGuid().ToString()));
+            }
+
+            return (int)HttpContext.Session.GetInt32("CustomerId");
+        }
+
 
     }
 }
