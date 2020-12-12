@@ -10,7 +10,6 @@
     <Compile Remove="Data\Migrations\20201023134921_CreateTables.Designer.cs" />
     <Compile Remove="Data\Migrations\20201023141134_IncludeOrderTable.cs" />
     <Compile Remove="Data\Migrations\20201023141134_IncludeOrderTable.Designer.cs" />
-    <Compile Remove="Models\Order.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SneakerBoxStore.Data;
@@ -111,9 +112,26 @@ namespace SneakerBoxStore.Controllers
         //Checkout forms
 
         //GET: /Shop/Checkout
+        [Authorize]
         public IActionResult Checkout()
         {
             return View();
+        }
+
+        // POST: /Shop/Checkout
+        [Authorize]
+        [HttpPost]
+        public IActionResult Checkout([Bind("Address, City, Province, PostalCode")] Order order)
+        {
+            order.OrderDate = DateTime.Now;
+            order.CustomerId = User.Identity.Name;
+            order.Total = (from c in _context.Carts
+                           where c.CustomerId == HttpContext.Session.GetString("CustomerId")
+                           select c.Quantity * c.Price).Sum();
+
+            HttpContext.Session.SetObject("Order", order);
+
+            return RedirectToAction("Payment");
         }
 
 

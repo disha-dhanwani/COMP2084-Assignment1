@@ -13,6 +13,8 @@ namespace SneakerBoxStore.Data
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderD> OrderDs { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
