@@ -39,36 +39,42 @@ namespace SneakerBoxStore.Controllers
         {
             var price = _context.Sneakers.Find(SneakerId).Price;
             
-            int customerId = 2;
+            var customerId = GetCustomerId();
 
-            var cart = new ShoppingCart
+            var cart = new Cart
             {
                 SneakerId = SneakerId,
                 Quantity = Quantity,
                 CustomerId = customerId,
-                DateAdded = DateTime.Now.ToString(),
+                DateCreated = DateTime.Now,
                 Price = price,
-                SneakerSize = Size
+                Size = Size
             };
 
             //save to the carts table in db
-            _context.ShoppingCarts.Add(cart);
+            _context.Carts.Add(cart);
             _context.SaveChanges();
 
             return RedirectToAction("Cart");
 
         }
 
-        private int GetCustomerId()
+        private string GetCustomerId()
         {
-            if(HttpContext.Session.GetInt32("CustomerId") == null)
+            if(HttpContext.Session.GetString("CustomerId") == null)
             {
-                HttpContext.Session.SetInt32("CustomerId", int.Parse(Guid.NewGuid().ToString()));
+                HttpContext.Session.SetString("CustomerId", Guid.NewGuid().ToString());
             }
 
-            return (int)HttpContext.Session.GetInt32("CustomerId");
+            return HttpContext.Session.GetString("CustomerId");
         }
 
+        //GET: /Shop/Cart
+        public IActionResult Cart()
+        {
+            var cartItems = _context.Carts.Include(c => c.Sneaker).Where(c => c.CustomerId == HttpContext.Session.GetString("CustomerId"));
+            return View(cartItems);
+        }
 
     }
 }
