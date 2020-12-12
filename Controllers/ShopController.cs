@@ -44,7 +44,7 @@ namespace SneakerBoxStore.Controllers
         //        SneakerId = SneakerId,
         //        Quantity = Quantity,
         //        CustomerId = customerId,
-
+        //        DateAdded = DateTime.Now
         //    }
 
         //}
