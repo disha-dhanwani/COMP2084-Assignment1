@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SneakerBoxStore.Models.Sneaker>
+
+@{
+    ViewData["Title"] = "Shop our " + ViewBag.BrandCategory + " items - ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Shop from our selected @ViewBag.BrandCategory sneakers!</h2>
+
+<section>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-lg-4 mb-3">
+                <div class="card mb-3 text-center h-100">
+                    <div class="card-body">
+                        <a asp-controller="Sneakers" asp-action="Details" asp-route-id="@item.SneakerId" class="h5">
+                            @if (item.Image != null)
+                            {
+                                <img src="~/img/sneaker_upload/@item.Image" class="img-thumbnail" alt="" />
+                            }
+                            <br />
+                            <span class="font-weight-bold">@item.ModelName</span>
+                        </a><br />
+                        <span class="font-italic">@String.Format("{0:c}", item.Price)</span>
+                        <form method="post" action="/Shop/AddToCart">
+                            <input type="hidden" id="SneakerId" name="SneakerId" value="@item.SneakerId" />
+                            <div class="form-group">
+                                <label class="control-label" for="Quantity">Quantity</label>
+                                <input name="Quantity" id="quantity" required min="1" max="10" type="number" class="input-small" width="50px" />
+                                <br />
+                                <label class="control-label" for="Size">Size</label>
+                                <input name="Size" id="size" required min="37" max="45" type="number" class="input-small" width="50px" />
+                            </div>
+                            <button class="btn btn-primary">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

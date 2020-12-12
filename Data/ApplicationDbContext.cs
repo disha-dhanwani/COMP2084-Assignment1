@@ -45,12 +45,6 @@ namespace SneakerBoxStore.Data
                 .HasForeignKey(s => s.SneakerId)
                 .HasConstraintName("FKey_ShoppingCarts_SneakerId");
 
-            //5. Customer has a one-to-many relationship with ShoppingCart.
-            builder.Entity<ShoppingCart>()
-                .HasOne(s => s.Customer)
-                .WithMany(c => c.ShoppingCarts)
-                .HasForeignKey(s => s.CustomerId)
-                .HasConstraintName("FKey_ShoppingCarts_CustomerId");
 
             
 

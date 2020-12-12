@@ -1,90 +1,22 @@
-﻿@model IEnumerable<SneakerBoxStore.Models.Sneaker>
+﻿@model IEnumerable<SneakerBoxStore.Models.BrandCategory>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Shop from our special collection! - ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<h2>Choose a brand and check out their sneakers!</h2>
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ModelName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReleaseYear)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Material)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InStock)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BrandCategory)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<section>
+    <div class="row">
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ModelName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReleaseYear)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Material)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Image)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InStock)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BrandCategory.BrandName)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.SneakerId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.SneakerId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.SneakerId">Delete</a>
-                </td>
-            </tr>
+            <div class="col-sm-6 col-lg-4 mb-3">
+                <div class="card mb-3 text-center h-100">
+                    <div class="card-body">
+                        <a asp-controller="Shop" asp-action="Browse" asp-route-id="@item.BrandCategoryId">@item.BrandName</a>
+                    </div>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
-@*@foreach (var item in Model)
-{
-    <div class="grid-container">
-        <div class="grid-item">
-            @Html.DisplayFor(modelItem => item.Image)
-            <br />@Html.DisplayFor(modelItem => item.ModelName)
-            @Html.DisplayFor(modelItem => item.Price)
-        </div>
     </div>
-
-}*@
+</section>

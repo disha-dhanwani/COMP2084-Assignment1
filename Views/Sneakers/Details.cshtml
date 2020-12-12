@@ -72,7 +72,22 @@
                 </dd>
             </dl>
         </div>
-
+        <form method="post" action="/Shop/AddToCart" class="offset-sm-2">
+            <input type="hidden" id="SneakerId" name="SneakerId" value="@Model.SneakerId" />
+            <div class="form-group">
+                <label class="control-label" for="Quantity">Quantity</label>
+                <input name="Quantity" id="quantity" required min="1" max="10" type="number" class="input-small" width="50px" />
+                <br />
+                <label class="control-label" for="Size">Size</label>&nbsp;&nbsp;
+                <input name="Size" id="size" required min="37" max="45" type="number" class="input-small" width="50px" />
+            </div>
+            <button class="btn btn-primary">Add to Cart</button>
+        </form>
+        <div>
+            <a href="javascript:history.go(-1);" class="btn btn-outline-info">Back</a>
+            &nbsp;
+        </div>        
+        <br />
         @if (User.IsInRole("Administrator"))
         {
             <div>
@@ -85,16 +100,6 @@
                 <br /><br />
             </div>
         }
-        <div>
-            <a asp-action="Index">
-                <input type="submit" value="Back to List" class="btn btn-outline-info" />
-            </a> &nbsp;
-            @*--<a class="btn btn-outline-info" asp-action="Index">Back to List</a>*@
-            <a asp-action="Create" asp-controller="ShoppingCarts">
-                <input type="hidden" asp-for="ShoppingCarts" />
-                <input type="submit" value="Add to Cart" class="btn btn-outline-primary " />
-            </a>
-        </div>
-        <br />
+
     </div>
 </main>

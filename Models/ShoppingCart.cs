@@ -14,14 +14,12 @@ namespace SneakerBoxStore.Models
          */
         public int ShoppingCartId { get; set; }  //Primary Key
         public int SneakerId { get; set; }  //Foreign Key
-        public int CustomerId { get; set; }
-        public int DateAdded { get; set; }
-        public int DateModified { get; set; }
+        public string CustomerId { get; set; }
+        public DateTime DateAdded { get; set; }
         public int Quantity { get; set; }
-        public Double Price { get; set; }
-        public Double Total { get; set; }
+        public double Price { get; set; }
         [Display(Name = "Size")]
-        public String SneakerSize { get; set; }
+        public int SneakerSize { get; set; }
 
         //Child Reference
         public Sneaker Sneaker { get; set; }
