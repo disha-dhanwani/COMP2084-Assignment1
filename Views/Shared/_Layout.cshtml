@@ -1,10 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title class="h1">@ViewData["Title"]SneakerBox</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="icon" href="~/shoe.ico">
     <style>
@@ -40,13 +43,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" title="Shop" asp-area="" asp-controller="Sneakers" asp-action="Index">Sneakers</a>
                         </li>
-                        @if (User.IsInRole("Customer"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="ShoppingCarts" asp-action="Index">Cart</a>
+                        <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Shop" asp-action="Cart">
+                                    <span class="material-icons align-top">
+                                        shopping_cart
+                                    </span>
+                                    @if(Context.Session.GetInt32("NumberOfItems") != 0)
+                                    {
+                                        <span class="badge badge-secondary">@Context.Session.GetInt32("NumberOfItems")</span>
+                                    }
+                                </a>
                             </li>
-                        }
-
                         @if (User.IsInRole("Administrator"))
                         {
                             <li class="nav-item">
