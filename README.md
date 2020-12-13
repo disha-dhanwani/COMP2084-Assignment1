@@ -31,6 +31,7 @@ As of now, this site is hosted on my local server.
 This web application was built by me on Visual studio using MVC Entity Frameworks and connecting to the database 'SneakerBoxStore' on my local server.
 The application includes the following languages: C#, Javascript, HTML and CSS.
 
+*A part of the code - Session Extension - was taken from https://www.talkingdotnet.com/store-complex-objects-in-asp-net-core-session/ *
 *The site layout (CSS) is from https://bootswatch.com/lux/*
 
 SNEAKERBOX © Disha Dhanwani (200434069) - Georgian College
