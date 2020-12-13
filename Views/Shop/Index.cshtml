@@ -4,16 +4,19 @@
     ViewData["Title"] = "Shop from our special collection! - ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Choose a brand and check out their sneakers!</h2>
+<h2>Choose a brand!</h2>
 
 <section>
     <div class="row">
         @foreach (var item in Model)
         {
             <div class="col-sm-6 col-lg-4 mb-3">
-                <div class="card mb-3 text-center h-100">
+                <div class="card mb-3 text-center h-100 bg-transparent">
                     <div class="card-body">
-                        <a asp-controller="Shop" asp-action="Browse" asp-route-id="@item.BrandCategoryId">@item.BrandName</a>
+                        <h4 class="card-title">
+                            <a asp-controller="Shop" asp-action="Browse" asp-route-id="@item.BrandCategoryId"class="card-link" c>@item.BrandName</a>
+                        </h4>
+                        <p class="card-text">View all @item.BrandName sneakers.</p>
                     </div>
                 </div>
             </div>

@@ -5,11 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Checkout</h1>
+<style>
+    .form-center {
+        margin: auto;
+        width: 50%;
+    }
+</style>
+
+<h3>Please enter your details to checkout!</h3>
 
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 form-center">
         <form asp-action="Checkout">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">

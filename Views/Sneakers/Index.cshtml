@@ -5,23 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <main>
-
     <div class="align-content-center" name="top">
         <h1>Shop</h1>
-        <a asp-area="" asp-controller="BrandCategories" asp-action="Index">View All Brands</a>
-        <br />
     </div>
-
 
     @if (User.IsInRole("Administrator"))
     {
         <p>
             <a asp-action="Create">Add a Sneaker</a> |
             <a asp-area="" asp-controller="BrandCategories" asp-action="Index">Add a Brand</a>
-
         </p>
     }
-
 
     <br />
     <section class="align-content-center">

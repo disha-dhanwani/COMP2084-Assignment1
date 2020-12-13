@@ -5,14 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-    main{
-        /*padding-top:initial;*/
+    .detail-center {
+        margin: auto;
+        width: 80%;
     }
 </style>
 <main>
     <div>
-        <h1>Details</h1>
-
         <div>
             <h4>
                 @Html.DisplayFor(model => model.BrandCategory.BrandName)
@@ -20,7 +19,7 @@
             </h4>
         </div>
         <hr />
-        <div>
+        <div class="detail-center">
             <dl class="row font-weight-bold">
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.ModelName)
@@ -53,7 +52,6 @@
                     @Html.DisplayFor(model => model.Price)
                 </dd>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Image)
                 </dt>
                 <dd class="col-sm-10">
                     <img src="@("~/img/sneaker_upload/"+Model.Image)" asp-append-version="true" width="300px" />
@@ -71,22 +69,20 @@
                     @Html.DisplayFor(model => model.BrandCategory.BrandName)
                 </dd>
             </dl>
+            <form method="post" action="/Shop/AddToCart" class="offset-sm-2">
+                <input type="hidden" id="SneakerId" name="SneakerId" value="@Model.SneakerId" />
+                <div class="form-group">
+                    <label class="control-label" for="Quantity">Quantity</label>
+                    <input name="Quantity" id="quantity" required min="1" max="10" type="number" class="input-small" width="50px" />
+                    <br />
+                    <label class="control-label" for="Size">Size</label>&nbsp;&nbsp;
+                    <input name="Size" id="size" required min="37" max="45" type="number" class="input-small" width="50px" />
+                </div>
+                <a href="javascript:history.go(-1);" class="btn btn-secondary bg-transparent">Back</a>
+                &nbsp;
+                <button class="btn btn-primary">Add to Cart</button>
+            </form>
         </div>
-        <form method="post" action="/Shop/AddToCart" class="offset-sm-2">
-            <input type="hidden" id="SneakerId" name="SneakerId" value="@Model.SneakerId" />
-            <div class="form-group">
-                <label class="control-label" for="Quantity">Quantity</label>
-                <input name="Quantity" id="quantity" required min="1" max="10" type="number" class="input-small" width="50px" />
-                <br />
-                <label class="control-label" for="Size">Size</label>&nbsp;&nbsp;
-                <input name="Size" id="size" required min="37" max="45" type="number" class="input-small" width="50px" />
-            </div>
-            <button class="btn btn-primary">Add to Cart</button>
-        </form>
-        <div>
-            <a href="javascript:history.go(-1);" class="btn btn-outline-info">Back</a>
-            &nbsp;
-        </div>        
         <br />
         @if (User.IsInRole("Administrator"))
         {

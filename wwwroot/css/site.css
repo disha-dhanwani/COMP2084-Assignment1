@@ -99,3 +99,10 @@ a.grid-item {
 a.grid-item:hover {
     color: black;
 }
+
+.cart-center {
+    margin: auto;
+    width: 50%;
+    border: none;
+    padding: 15px;
+}
